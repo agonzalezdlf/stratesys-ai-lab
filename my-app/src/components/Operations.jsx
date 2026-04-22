@@ -13,7 +13,7 @@ export function DispatchTable({ deliveries, onAcceptSuggestion, onMoveLater, onR
               <th>Success probability</th>
               <th>Suggested slot</th>
               <th>Assigned route</th>
-              <th>Risk reason</th>
+              <th>Why this stop matters</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -48,16 +48,16 @@ export function DispatchTable({ deliveries, onAcceptSuggestion, onMoveLater, onR
                 <td>
                   <div className="action-grid">
                     <button type="button" onClick={() => onAcceptSuggestion(delivery.id)}>
-                      Accept AI suggestion
+                      Use suggested time
                     </button>
                     <button type="button" onClick={() => onMoveLater(delivery.id)}>
-                      Move to later block
+                      Move later
                     </button>
                     <button type="button" onClick={() => onReassignRoute(delivery.id)}>
-                      Assign another route
+                      Change route
                     </button>
                     <button type="button" onClick={() => onTogglePriority(delivery.id)}>
-                      {delivery.priority ? 'Unmark priority' : 'Mark high priority'}
+                      {delivery.priority ? 'Remove priority' : 'Mark priority'}
                     </button>
                   </div>
                 </td>

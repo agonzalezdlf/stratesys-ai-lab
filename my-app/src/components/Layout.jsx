@@ -2,10 +2,10 @@ export function Sidebar({ pages, activePage, onChange }) {
   return (
     <aside className="sidebar">
       <div>
-        <p className="eyebrow">AI Delivery Success & Timing Platform</p>
-        <h1>Operational intelligence for first-attempt delivery success</h1>
+        <p className="eyebrow">AI Delivery Platform</p>
+        <h1>Help teams deliver on time and reduce failed visits</h1>
         <p className="sidebar-copy">
-          AI-guided planning for Spanish logistics networks using anonymized delivery behavior.
+          Built for operations managers, planners, and drivers across logistics networks in Spain.
         </p>
       </div>
 
@@ -25,7 +25,7 @@ export function Sidebar({ pages, activePage, onChange }) {
 
       <div className="sidebar-footer">
         <span className="status-dot live" />
-        Shared model active across anonymized provider network
+        Shared learning active with anonymized provider data
       </div>
     </aside>
   )
@@ -36,7 +36,7 @@ export function TopBar({ failedCount, dispatchCount, driverCount }) {
     <div className="topbar">
       <div>
         <p className="eyebrow">Today in focus</p>
-        <h2>Operational control center</h2>
+        <h2>Delivery performance overview</h2>
       </div>
       <div className="topbar-stats">
         <StatPill label="At-risk stops" value={failedCount} tone="danger" />

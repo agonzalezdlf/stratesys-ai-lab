@@ -12,8 +12,8 @@ export function DriverMobileView({ deliveries, onUpdateStatus }) {
     <div className="driver-phone-shell">
       <div className="driver-phone-header">
         <div>
-          <span className="eyebrow">Driver mobile</span>
-          <h3>Route stops</h3>
+          <span className="eyebrow">Driver app</span>
+          <h3>Today&apos;s route</h3>
         </div>
         <Badge tone="success">Live sync</Badge>
       </div>
@@ -61,7 +61,7 @@ export function NotificationExamples({ notifications }) {
   return (
     <Card>
       <h3>Notification examples</h3>
-      <p className="section-copy">Illustrative outbound communications generated after timing optimization.</p>
+      <p className="section-copy">Examples of messages sent after the platform improves delivery timing.</p>
       <div className="notification-list">
         {notifications.map((notification) => (
           <div key={notification.id} className="notification-card">
@@ -83,9 +83,9 @@ export function IntelligenceOverview({ stats, trendLabels, confidenceValues }) {
   return (
     <div className="intelligence-grid">
       <Card>
-        <h3>Aggregated anonymized intelligence</h3>
+        <h3>Shared network learning</h3>
         <p className="section-copy">
-          Providers contribute delivery outcomes, not raw customer data. The shared model only exposes aggregated patterns.
+          Providers contribute delivery outcomes, not raw customer data. Only aggregated patterns are used.
         </p>
         <div className="intelligence-stats">
           <div>
@@ -107,8 +107,8 @@ export function IntelligenceOverview({ stats, trendLabels, confidenceValues }) {
         </div>
       </Card>
       <Card>
-        <h3>Model confidence trend</h3>
-        <p className="section-copy">Illustrative uplift as more providers and outcomes join the intelligence network.</p>
+        <h3>Prediction confidence trend</h3>
+        <p className="section-copy">Example of confidence improving as more providers join the network.</p>
         <div className="confidence-list">
           {confidenceValues.map((value, index) => (
             <div key={`${trendLabels[index]}-${value}`} className="confidence-row">

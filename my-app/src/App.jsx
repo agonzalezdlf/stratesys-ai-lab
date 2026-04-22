@@ -8,9 +8,9 @@ import { DispatchTable, TimingList } from './components/Operations'
 import { initialDeliveries, networkStats, notifications, providerBreakdown, trendData } from './data/mockData'
 
 const pages = [
-  { id: 'dashboard', label: 'Executive dashboard', description: 'KPIs, trends, and network notifications' },
-  { id: 'dispatch', label: 'Dispatch planning', description: 'Stop-level AI recommendations and actions' },
-  { id: 'driver', label: 'Driver mobile', description: 'Operational mobile workflow for route execution' },
+  { id: 'dashboard', label: 'Overview', description: 'Main metrics, trends, and alerts' },
+  { id: 'dispatch', label: 'Planning', description: 'Today’s stops and suggested changes' },
+  { id: 'driver', label: 'Driver app', description: 'Mobile route view and status updates' },
 ]
 
 const routeRotation = {
@@ -70,31 +70,31 @@ function App() {
       label: 'First-attempt success rate',
       value: `${summary.firstAttemptSuccessRate.toFixed(1)}%`,
       delta: '+1.8 pts',
-      detail: 'Blended live estimate using delivered stops and remaining AI success scores.',
+      detail: 'Estimated share of deliveries completed on the first visit.',
     },
     {
       label: 'Failed deliveries today',
       value: summary.failedToday.toString(),
       delta: '-3 vs last week',
-      detail: 'Confirmed customer absence events received from driver actions.',
+      detail: 'Stops marked as not delivered today.',
     },
     {
       label: 'Predicted failed deliveries today',
       value: summary.predictedFailed.toString(),
       delta: `${summary.atRisk} active risks`,
-      detail: 'Stops likely to fail without a timing or routing intervention.',
+      detail: 'Stops likely to fail unless the plan is adjusted.',
     },
     {
       label: 'Average delivery window width',
       value: `${summary.averageWindowWidth.toFixed(1)}h`,
       delta: '-1.4h',
-      detail: 'Current mean window size after dynamic window compression.',
+      detail: 'Average promised time range shown to recipients.',
     },
     {
       label: 'On-time delivery rate',
       value: `${summary.onTimeRate.toFixed(1)}%`,
       delta: '+2.3 pts',
-      detail: 'Confidence-weighted timing accuracy across in-flight routes.',
+      detail: 'Estimated share of stops arriving within the promised window.',
     },
   ]
 
@@ -206,21 +206,21 @@ function App() {
     <div className="page-grid">
       <SectionHeader
         title="Executive dashboard"
-        description="Monitor timing accuracy, first-attempt delivery success, and predictive failure prevention."
-        action={<Badge tone="success">Subscription-ready SaaS prototype</Badge>}
+        description="A simple view of delivery performance, timing accuracy, and today’s alerts."
+        action={<Badge tone="success">Clickable prototype</Badge>}
       />
       <KpiGrid items={kpiItems} />
       <div className="chart-grid">
         <TrendChart
           title="Failed deliveries over time"
-          subtitle="Daily failed first attempts after AI intervention"
+          subtitle="How unsuccessful first attempts changed this week"
           labels={trendData.labels}
           values={trendData.failedDeliveries}
           tone="red"
         />
         <TrendChart
           title="First-attempt success rate"
-          subtitle="Rolling seven-day performance for provider operations"
+          subtitle="How often deliveries succeed on the first visit"
           labels={trendData.labels}
           values={trendData.firstAttemptSuccess}
           format="percent"
@@ -228,7 +228,7 @@ function App() {
         />
         <TrendChart
           title="Average window accuracy"
-          subtitle="Share of stops arriving inside predicted 2-hour windows"
+          subtitle="How often deliveries land inside the promised time window"
           labels={trendData.labels}
           values={trendData.windowAccuracy}
           format="percent"
@@ -251,7 +251,7 @@ function App() {
     <div className="page-grid">
       <SectionHeader
         title="Route planning and dispatch"
-        description="Review stop-level recommendations, timing risk reasons, and route adjustments generated from anonymized behavior patterns."
+        description="Review today’s stops, see the suggested best time, and make simple route changes."
         action={<Badge tone="warning">{summary.atRisk} stops need action</Badge>}
       />
       <DispatchTable
@@ -263,7 +263,7 @@ function App() {
       />
       <SectionHeader
         title="Delivery timing view"
-        description="Predicted 2-hour windows with confidence, route progression, and live window updates."
+        description="See each stop’s expected delivery time, confidence level, and live updates."
       />
       <TimingList deliveries={deliveries} />
     </div>
@@ -273,14 +273,14 @@ function App() {
     <div className="driver-layout">
       <div className="page-grid">
         <SectionHeader
-          title="Driver mobile workflow"
-          description="Compact route view for drivers, with feedback actions that immediately update control tower state."
-          action={<Badge tone="neutral">Mobile-ready layout</Badge>}
-        />
+        title="Driver mobile workflow"
+        description="A simple mobile view for drivers to follow the route and report what happened."
+        action={<Badge tone="neutral">Mobile layout</Badge>}
+      />
         <div className="driver-summary-grid">
           <Card>
             <h3>Route status</h3>
-            <p className="section-copy">Active stops visible on the mobile app and synchronized to dispatch.</p>
+            <p className="section-copy">Live route progress shared between drivers and planners.</p>
             <div className="driver-summary-values">
               <div>
                 <span>Stops assigned</span>
@@ -299,13 +299,13 @@ function App() {
           <Card>
             <h3>Driver feedback loop</h3>
             <p className="section-copy">
-              Status updates retrain route risk, timing confidence, and future attendance predictions on anonymized user IDs.
+              Driver updates improve future timing suggestions using anonymized delivery history.
             </p>
             <ul className="feedback-list">
-              <li>Delivered updates positive attendance history</li>
-              <li>Customer not home strengthens absence risk for that time block</li>
-              <li>Access issue helps separate timing risk from building-access friction</li>
-              <li>Delayed triggers automatic window refresh</li>
+              <li>Delivered confirms this time slot works well</li>
+              <li>Customer not home increases risk for that time block</li>
+              <li>Access issue shows the problem is building entry, not timing</li>
+              <li>Delayed refreshes the expected arrival window</li>
             </ul>
           </Card>
         </div>

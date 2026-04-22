@@ -59,8 +59,8 @@ export function TrendChart({ title, subtitle, labels, values, format = 'number',
 export function ProviderBreakdown({ items }) {
   return (
     <Card>
-      <h3>Provider participation mix</h3>
-      <p className="section-copy">Illustrative share of anonymized learning volume in the common model layer.</p>
+      <h3>Network participation</h3>
+      <p className="section-copy">Example of how providers contribute anonymized learning to the shared model.</p>
       <div className="provider-list">
         {items.map((item, index) => (
           <div key={item.label} className="provider-row">
